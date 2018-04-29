@@ -29,7 +29,14 @@ public class Producer implements Runnable {
         }
     }
 
-    private void generateJob() {
+    private void generateJob() throws InterruptedException {
         //TODO: здесь нужно сгенерировать новое задание!
+        synchronized (store){
+            while (store.cnt == JobsStore.JOB_STORE_SIZE-1)
+                store.wait();
+            store.store[store.cnt++] = new Job(i++);
+            System.out.println("Producer generate Job "+i);
+            store.notify();
+        }
     }
 }
