@@ -24,7 +24,7 @@ public class Main {
 
         List<Thread> consumers = new ArrayList<>();
 
-        for(int i=0; i<CONSUMER_CNT; i++) {
+        for (int i = 0; i < CONSUMER_CNT; i++) {
             Thread consumer = new Thread(new Consumer(store, doneJobs));
 
             consumer.start();
@@ -34,8 +34,7 @@ public class Main {
 
         try {
             MINUTES.sleep(2);
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
